@@ -14,7 +14,7 @@ function rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,case_type,fs)
 if (nargin <= 2)
     fs = 1;
 end
-
+pointer = 1;
 switch case_type
     
     case 'part_1'
@@ -26,8 +26,8 @@ switch case_type
         L=length(rec_sample_seq);
         counter_zeros=0;
         counter_ones=0;
-            for i=1:10:L
-                for j=0:1:9
+            for i=1:fs:L
+                for j=0:1:fs-1
                     if rec_sample_seq(i+j)==0
                         counter_zeros=counter_zeros+1;
                     else
