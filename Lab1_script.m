@@ -125,7 +125,8 @@ legend('Part 1-a','Part 2-a','Part 3-a','fontsize',10)
 % code here. You can re-use any of the codes in the previous parts
 
 % fs ranges from 1 to 15
-F_s = 1:15;
+bit_seq = GenerateBits(N_bits);
+F_s = 1:20;
 BER_case_4 = zeros(1, length(F_s));
 p_4 = 0.2;
 
@@ -138,4 +139,6 @@ for i = 1:length(F_s)
 end
 figure
 plot(F_s, BER_case_4, 'linewidth', 2)
+xlabel('Values of fs','fontsize',10)
+ylabel('BER','fontsize',10)
 %%% WRITE YOUR CODE HERE
