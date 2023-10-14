@@ -27,6 +27,15 @@ switch case_type
         %%%
     case 'part_3'
         %%% WRITE YOUR CODE FOR PART 3 HERE
+        samples_length = length(rec_sample_seq);
+        bits_length = samples_length / fs;
+        rec_bit_seq = zeros(1, bits_length);
         
+        for bits_ind = 1:bits_length
+            samples_index = fs * bits_ind - (fs - 1);
+            window = rec_sample_seq(samples_index : samples_index + fs-1);
+            window_avg = sum(window)/fs;
+            rec_bit_seq(bits_ind) = (window_avg >= 0.5) * 1;
+        end
         %%%
 end
