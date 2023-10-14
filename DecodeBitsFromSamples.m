@@ -14,35 +14,30 @@ function rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,case_type,fs)
 if (nargin <= 2)
     fs = 1;
 end
-pointer = 1;
+
 switch case_type
     
     case 'part_1'
         %%% WRITE YOUR CODE FOR PART 1 HERE
-            rec_bit_seq=rec_sample_seq;
+        % I don't know how this works so for now the reciever is just a
+        % short circuit
+        % Surprisingly yes it is just a short circuit
+        rec_bit_seq = rec_sample_seq;
         %%%
     case 'part_2'
         %%% WRITE YOUR CODE FOR PART 2 HERE
-        L=length(rec_sample_seq);
-        counter_zeros=0;
-        counter_ones=0;
-            for i=1:fs:L
-                for j=0:1:fs-1
-                    if rec_sample_seq(i+j)==0
-                        counter_zeros=counter_zeros+1;
-                    else
-                        counter_ones=counter_ones+1;
-                    end
-                end
-                if counter_ones>=counter_zeros
-                    rec_bit_seq(pointer)=1;
-                else
-                    rec_bit_seq(pointer)=0;
-                end
-                counter_ones=0;
-                counter_zeros=0;
-                pointer=pointer+1;
-            end
+        % Decoding the repeated seq of bits 
+        % a catch is that if the no of 0's = no of 1's we favor it to be 1
+        samples_length = length(rec_sample_seq);
+        bits_length = samples_length / fs;
+        rec_bit_seq = zeros(1, bits_length);
+        
+        for bits_ind = 1:bits_length
+            samples_index = fs * bits_ind - (fs - 1);
+            window = rec_sample_seq(samples_index : samples_index + fs-1);
+            window_avg = sum(window)/fs;
+            rec_bit_seq(bits_ind) = (window_avg >= 0.5) * 1;
+        end
         %%%
     case 'part_3'
         %%% WRITE YOUR CODE FOR PART 3 HERE

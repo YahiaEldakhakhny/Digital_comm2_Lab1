@@ -15,7 +15,7 @@ p      = 0.2;   % Channel parameter (probability of bit flipping)
 %% Part 1: BER for simple BSC channel
 
 % Generate a bit sequence
-bit_seq = GenerateBits(N_bits); % IMPLEMENT THIS: Generate a sequence of bits equal to the total number of bits
+bit_seq = GenerateBits(N_bits); %[DONE] IMPLEMENT THIS: Generate a sequence of bits equal to the total number of bits
 
 % Pass the bit sequence through the channel
 rec_sample_seq = BSC(bit_seq,1,p);  % Generate the received samples after passing through the bit flipping channel
@@ -24,7 +24,7 @@ rec_sample_seq = BSC(bit_seq,1,p);  % Generate the received samples after passin
 rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_1');  % IMPLEMENT THIS: Decode the received bits
 
 % Compute the BER
-BER_case_1 = ComputeBER(bit_seq,rec_bit_seq); % IMPLEMENT THIS: Calculate the bit error rate
+BER_case_1 = ComputeBER(bit_seq,rec_bit_seq); %[DONE] IMPLEMENT THIS: Calculate the bit error rate
 
 %% Part 1-a: Effect of bit flipping probability on BER
 % GOAL: Make a plot for the BER versus different values of the channel
@@ -44,19 +44,19 @@ end
 %% Part 2: BER for simple bit-flipping channel with multiple samples
 
 % System parameters
-fs  = 10;    % Number of samples per symbol (bit)
+fs  = 5;    % Number of samples per symbol (bit)
 
 % Generate a bit sequence
 bit_seq = GenerateBits(N_bits); % Generate a sequence of bits equal to the total number of bits
 
 % Generate samples from bits
-sample_seq = GenerateSamples(bit_seq,fs); % IMPLEMENT THIS: Generate a sequence of samples for each bit
+sample_seq = GenerateSamples(bit_seq,fs); %[DONE] IMPLEMENT THIS: Generate a sequence of samples for each bit
 
 % Pass the sample sequence through the channel
 rec_sample_seq = BSC(sample_seq,fs,p);   % Generate the received samples after passing through the bit flipping channel
 
 % Decode bits from received bit sequence
-rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_2',fs);    % IMPLEMENT THIS: Decode the received bits
+rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_2',fs);    %[DONE] IMPLEMENT THIS: Decode the received bits
 
 % Compute the BER
 BER_case_2 = ComputeBER(bit_seq,rec_bit_seq);   % Calculate the bit error rate
@@ -77,7 +77,7 @@ end
 %%%
 
 %% Part 3: BER for simple bit-flipping channel with multiple samples and correlated channel
-
+fs=5;
 % Generate a bit sequence
 bit_seq = GenerateBits(N_bits); % Generate a sequence of bits equal to the total number of bits
 
@@ -124,21 +124,32 @@ legend('Part 1-a','Part 2-a','Part 3-a','fontsize',10)
 % There is no template code for this part. Please write your own complete
 % code here. You can re-use any of the codes in the previous parts
 
-% fs ranges from 1 to 15
-bit_seq = GenerateBits(N_bits);
-F_s = 1:20;
-BER_case_4 = zeros(1, length(F_s));
-p_4 = 0.2;
 
-for i = 1:length(F_s)
-    f_s = F_s(i);
-    sample_seq = GenerateSamples(bit_seq,f_s);
-    rec_sample_seq = BSC(sample_seq,f_s,p_4);   
-    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_2',f_s);
-    BER_case_4(i) = ComputeBER(bit_seq,rec_bit_seq);
+
+% Generate a bit sequence
+fs_vect          = 1:20;              % Use this vector to extract different values of p in your code
+p=0.2;
+BER_case_4_vec  = zeros(size(fs_vect));  % Use this vector to store the resultant BER
+
+bit_seq = GenerateBits(N_bits); % Generate a sequence of bits equal to the total number of bits
+
+
+for fs_ind = 1:length(fs_vect)
+    % Generate samples from bits
+    sample_seq = GenerateSamples(bit_seq,fs_vect(fs_ind)); %[DONE] IMPLEMENT THIS: Generate a sequence of samples for each bit
+
+    rec_sample_seq = BSC(sample_seq,fs_vect(fs_ind),p);
+    
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_2',fs_vect(fs_ind));
+    
+    BER_case_4_vec(fs_ind) = ComputeBER(bit_seq,rec_bit_seq);
 end
+
 figure
-plot(F_s, BER_case_4, 'linewidth', 2)
+plot(fs_vect,BER_case_4_vec,'linewidth',2); hold on;
+
 xlabel('Values of fs','fontsize',10)
 ylabel('BER','fontsize',10)
+
+
 %%% WRITE YOUR CODE HERE

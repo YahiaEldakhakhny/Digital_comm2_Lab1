@@ -9,18 +9,15 @@ function sample_seq = GenerateSamples(bit_seq,fs)
 % This function takes a sequence of bits and generates a sequence of
 % samples as per the input number of samples per bit
 
-sample_seq = zeros(size(bit_seq*fs));
-L=length(bit_seq);
-pointer=1;
-counter=0;
+    sample_seq = [];
+
 %%% WRITE YOUR CODE FOR PART 2 HERE
-for i =1:1:L
-    num=bit_seq(i);
-    while counter<10
-        sample_seq(pointer)=num;
-        counter=counter+1;
-        pointer=pointer+1;
+    for index = 1:length(bit_seq)
+        if bit_seq(index) == 1
+            sample_seq = [sample_seq ones(1, fs)];
+        else
+            sample_seq = [sample_seq zeros(1, fs)];
+        end
     end
-    counter=0;
-end
 %%%
+end
