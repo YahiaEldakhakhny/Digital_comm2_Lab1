@@ -33,9 +33,7 @@ switch case_type
         
         for bits_ind = 1:bits_length
             samples_index = fs * bits_ind - (fs - 1);
-            window = rec_sample_seq(samples_index : samples_index + fs-1);
-            window_avg = sum(window)/fs;
-            rec_bit_seq(bits_ind) = (window_avg >= 0.5) * 1;
+            rec_bit_seq(bits_ind) = rec_sample_seq(samples_index);
         end
         %%%
 end
