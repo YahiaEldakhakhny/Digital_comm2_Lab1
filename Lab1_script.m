@@ -124,5 +124,18 @@ legend('Part 1-a','Part 2-a','Part 3-a','fontsize',10)
 % There is no template code for this part. Please write your own complete
 % code here. You can re-use any of the codes in the previous parts
 
+% fs ranges from 1 to 15
+F_s = 1:15;
+BER_case_4 = zeros(1, length(F_s));
+p_4 = 0.2;
 
+for i = 1:length(F_s)
+    f_s = F_s(i);
+    sample_seq = GenerateSamples(bit_seq,f_s);
+    rec_sample_seq = BSC(sample_seq,f_s,p_4);   
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_2',f_s);
+    BER_case_4(i) = ComputeBER(bit_seq,rec_bit_seq);
+end
+figure
+plot(F_s, BER_case_4, 'linewidth', 2)
 %%% WRITE YOUR CODE HERE
