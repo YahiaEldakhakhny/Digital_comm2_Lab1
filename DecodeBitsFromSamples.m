@@ -19,11 +19,30 @@ switch case_type
     
     case 'part_1'
         %%% WRITE YOUR CODE FOR PART 1 HERE
-        
+            rec_bit_seq=rec_sample_seq;
         %%%
     case 'part_2'
         %%% WRITE YOUR CODE FOR PART 2 HERE
-        
+        L=length(rec_sample_seq);
+        counter_zeros=0;
+        counter_ones=0;
+            for i=1:10:L
+                for j=0:1:9
+                    if rec_sample_seq(i+j)==0
+                        counter_zeros=counter_zeros+1;
+                    else
+                        counter_ones=counter_ones+1;
+                    end
+                end
+                if counter_ones>=counter_zeros
+                    rec_bit_seq(pointer)=1;
+                else
+                    rec_bit_seq(pointer)=0;
+                end
+                counter_ones=0;
+                counter_zeros=0;
+                pointer=pointer+1;
+            end
         %%%
     case 'part_3'
         %%% WRITE YOUR CODE FOR PART 3 HERE
