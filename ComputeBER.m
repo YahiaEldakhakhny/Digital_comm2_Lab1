@@ -10,5 +10,15 @@ function BER = ComputeBER(bit_seq,rec_bit_seq)
 % BER
 
 %%% WRITE YOUR CODE HERE
+counter =0;
+l=length(bit_seq);
+%%% WRITE YOUR CODE HERE
+for i=1:1:l
+    if bit_seq(i)~=rec_bit_seq(i)
+    counter=counter+1;
+    end
+end
+BER=counter/length(bit_seq);
+end
 
 %%%
