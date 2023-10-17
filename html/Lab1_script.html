@@ -1,0 +1,331 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab1_script</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-10-17"><meta name="DC.source" content="Lab1_script.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><p>Alexandria University Faculty of Engineering Electrical and Electronic Engineering Department</p><p>Course: Digital Communications Lab</p><p>Lab No. 1: Basics of BER calculation and channel modeling</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Simulation parameters</a></li><li><a href="#2">Part 1: BER for simple BSC channel</a></li><li><a href="#3">Part 1-a: Effect of bit flipping probability on BER</a></li><li><a href="#4">WRITE YOUR CODE HERE</a></li><li><a href="#6">Part 2: BER for simple bit-flipping channel with multiple samples</a></li><li><a href="#7">Part 2-a: Effect of bit flipping probability on BER</a></li><li><a href="#8">WRITE YOUR CODE HERE</a></li><li><a href="#10">Part 3: BER for simple bit-flipping channel with multiple samples and correlated channel</a></li><li><a href="#11">Part 3-a: Effect of bit flipping probability on BER</a></li><li><a href="#12">WRITE YOUR CODE HERE</a></li><li><a href="#14">Part 4: Effect of number of repetitions on BER</a></li><li><a href="#15">WRITE YOUR CODE HERE</a></li></ul></div><h2>Simulation parameters<a name="1"></a></h2><pre class="codeinput">N_bits = 10000; <span class="comment">% Total number of bits</span>
+p      = 0.2;   <span class="comment">% Channel parameter (probability of bit flipping)</span>
+</pre><h2>Part 1: BER for simple BSC channel<a name="2"></a></h2><pre class="codeinput"><span class="comment">% Generate a bit sequence</span>
+bit_seq = GenerateBits(N_bits); <span class="comment">%[DONE] IMPLEMENT THIS: Generate a sequence of bits equal to the total number of bits</span>
+
+<span class="comment">% Pass the bit sequence through the channel</span>
+rec_sample_seq = BSC(bit_seq,1,p);  <span class="comment">% Generate the received samples after passing through the bit flipping channel</span>
+
+<span class="comment">% Decode bits from received bit sequence</span>
+rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,<span class="string">'part_1'</span>);  <span class="comment">% IMPLEMENT THIS: Decode the received bits</span>
+
+<span class="comment">% Compute the BER</span>
+BER_case_1 = ComputeBER(bit_seq,rec_bit_seq); <span class="comment">%[DONE] IMPLEMENT THIS: Calculate the bit error rate</span>
+</pre><h2>Part 1-a: Effect of bit flipping probability on BER<a name="3"></a></h2><p>GOAL: Make a plot for the BER versus different values of the channel parameter p</p><pre class="codeinput">p_vect          = 0:0.1:1;              <span class="comment">% Use this vector to extract different values of p in your code</span>
+BER_case_1_vec  = zeros(size(p_vect));  <span class="comment">% Use this vector to store the resultant BER</span>
+</pre><h2>WRITE YOUR CODE HERE<a name="4"></a></h2><pre class="codeinput"><span class="keyword">for</span> p_ind = 1:length(p_vect)
+    rec_sample_seq = BSC(bit_seq,1,p_vect(p_ind));
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,<span class="string">'part_1'</span>);
+    BER_case_1_vec(p_ind) = ComputeBER(bit_seq,rec_bit_seq);
+<span class="keyword">end</span>
+</pre><h2>Part 2: BER for simple bit-flipping channel with multiple samples<a name="6"></a></h2><pre class="codeinput"><span class="comment">% System parameters</span>
+fs  = 5;    <span class="comment">% Number of samples per symbol (bit)</span>
+
+<span class="comment">% Generate a bit sequence</span>
+bit_seq = GenerateBits(N_bits); <span class="comment">% Generate a sequence of bits equal to the total number of bits</span>
+
+<span class="comment">% Generate samples from bits</span>
+sample_seq = GenerateSamples(bit_seq,fs); <span class="comment">%[DONE] IMPLEMENT THIS: Generate a sequence of samples for each bit</span>
+
+<span class="comment">% Pass the sample sequence through the channel</span>
+rec_sample_seq = BSC(sample_seq,fs,p);   <span class="comment">% Generate the received samples after passing through the bit flipping channel</span>
+
+<span class="comment">% Decode bits from received bit sequence</span>
+rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,<span class="string">'part_2'</span>,fs);    <span class="comment">%[DONE] IMPLEMENT THIS: Decode the received bits</span>
+
+<span class="comment">% Compute the BER</span>
+BER_case_2 = ComputeBER(bit_seq,rec_bit_seq);   <span class="comment">% Calculate the bit error rate</span>
+</pre><h2>Part 2-a: Effect of bit flipping probability on BER<a name="7"></a></h2><p>GOAL: Make a plot for the BER versus different values of the channel parameter p</p><pre class="codeinput">p_vect          = 0:0.1:1;              <span class="comment">% Use this vector to extract different values of p in your code</span>
+BER_case_2_vec  = zeros(size(p_vect));  <span class="comment">% Use this vector to store the resultant BER</span>
+</pre><h2>WRITE YOUR CODE HERE<a name="8"></a></h2><pre class="codeinput"><span class="keyword">for</span> p_ind = 1:length(p_vect)
+    rec_sample_seq = BSC(sample_seq,fs,p_vect(p_ind));
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,<span class="string">'part_2'</span>,fs);
+    BER_case_2_vec(p_ind) = ComputeBER(bit_seq,rec_bit_seq);
+<span class="keyword">end</span>
+</pre><h2>Part 3: BER for simple bit-flipping channel with multiple samples and correlated channel<a name="10"></a></h2><pre class="codeinput">fs=5;
+<span class="comment">% Generate a bit sequence</span>
+bit_seq = GenerateBits(N_bits); <span class="comment">% Generate a sequence of bits equal to the total number of bits</span>
+
+<span class="comment">% Generate samples from bits</span>
+sample_seq = GenerateSamples(bit_seq,fs); <span class="comment">% Generate a sequence of samples for each bit</span>
+
+<span class="comment">% Pass the sample sequence through the channel</span>
+rec_sample_seq  = BSC(sample_seq,fs,p,<span class="string">'correlated'</span>); <span class="comment">% Generate the received samples after passing through the bit flipping channel</span>
+
+<span class="comment">% Decode bits from received bit sequence</span>
+rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,<span class="string">'part_3'</span>,fs);    <span class="comment">% IMPLEMENT THIS: Decode the received bits</span>
+
+<span class="comment">% Compute the BER</span>
+BER_case_3 = ComputeBER(bit_seq,rec_bit_seq);  <span class="comment">% Calculate the bit error rate</span>
+</pre><h2>Part 3-a: Effect of bit flipping probability on BER<a name="11"></a></h2><p>GOAL: Make a plot for the BER versus different values of the channel parameter p</p><pre class="codeinput">p_vect          = 0:0.1:1;              <span class="comment">% Use this vector to extract different values of p in your code</span>
+BER_case_3_vec  = zeros(size(p_vect));  <span class="comment">% Use this vector to store the resultant BER</span>
+</pre><h2>WRITE YOUR CODE HERE<a name="12"></a></h2><pre class="codeinput"><span class="keyword">for</span> p_ind = 1:length(p_vect)
+    rec_sample_seq = BSC(sample_seq,fs,p_vect(p_ind),<span class="string">'correlated'</span>);
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,<span class="string">'part_3'</span>,fs);
+    BER_case_3_vec(p_ind) = ComputeBER(bit_seq,rec_bit_seq);
+<span class="keyword">end</span>
+</pre><pre class="codeinput"><span class="comment">% Plotting results</span>
+
+figure
+plot(p_vect,BER_case_1_vec,<span class="string">'x-k'</span>,<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>;
+plot(p_vect,BER_case_2_vec,<span class="string">'o-r'</span>,<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>;
+plot(p_vect,BER_case_3_vec,<span class="string">'d-b'</span>,<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>;
+
+xlabel(<span class="string">'Values of p'</span>,<span class="string">'fontsize'</span>,10)
+ylabel(<span class="string">'BER'</span>,<span class="string">'fontsize'</span>,10)
+legend(<span class="string">'Part 1-a'</span>,<span class="string">'Part 2-a'</span>,<span class="string">'Part 3-a'</span>,<span class="string">'fontsize'</span>,10)
+</pre><pre class="codeoutput">Warning: Using an integer to specify the legend location is not supported.
+Specify the legend location with respect to the axes using the 'Location'
+parameter. 
+Warning: Ignoring extra legend entries. 
+</pre><img vspace="5" hspace="5" src="Lab1_script_01.png" style="width:560px;height:420px;" alt=""> <h2>Part 4: Effect of number of repetitions on BER<a name="14"></a></h2><p>GOAL: Make a plot for the BER versus the number of repetitions used in the transmitter of part 2 There is no template code for this part. Please write your own complete code here. You can re-use any of the codes in the previous parts</p><pre class="codeinput"><span class="comment">% Generate a bit sequence</span>
+fs_vect          = 1:20;              <span class="comment">% Use this vector to extract different values of p in your code</span>
+p=0.2;
+BER_case_4_vec  = zeros(size(fs_vect));  <span class="comment">% Use this vector to store the resultant BER</span>
+
+bit_seq = GenerateBits(N_bits); <span class="comment">% Generate a sequence of bits equal to the total number of bits</span>
+
+
+<span class="keyword">for</span> fs_ind = 1:length(fs_vect)
+    <span class="comment">% Generate samples from bits</span>
+    sample_seq = GenerateSamples(bit_seq,fs_vect(fs_ind)); <span class="comment">%[DONE] IMPLEMENT THIS: Generate a sequence of samples for each bit</span>
+
+    rec_sample_seq = BSC(sample_seq,fs_vect(fs_ind),p);
+
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,<span class="string">'part_2'</span>,fs_vect(fs_ind));
+
+    BER_case_4_vec(fs_ind) = ComputeBER(bit_seq,rec_bit_seq);
+<span class="keyword">end</span>
+
+figure
+plot(fs_vect,BER_case_4_vec,<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>;
+
+xlabel(<span class="string">'Values of fs'</span>,<span class="string">'fontsize'</span>,10)
+ylabel(<span class="string">'BER'</span>,<span class="string">'fontsize'</span>,10)
+</pre><h2>WRITE YOUR CODE HERE<a name="15"></a></h2><img vspace="5" hspace="5" src="Lab1_script_02.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+% Alexandria University
+% Faculty of Engineering
+% Electrical and Electronic Engineering Department
+%
+% Course: Digital Communications Lab
+% 
+% Lab No. 1: Basics of BER calculation and channel modeling
+
+%% Simulation parameters
+
+N_bits = 10000; % Total number of bits
+p      = 0.2;   % Channel parameter (probability of bit flipping)
+
+%% Part 1: BER for simple BSC channel
+
+% Generate a bit sequence
+bit_seq = GenerateBits(N_bits); %[DONE] IMPLEMENT THIS: Generate a sequence of bits equal to the total number of bits
+
+% Pass the bit sequence through the channel
+rec_sample_seq = BSC(bit_seq,1,p);  % Generate the received samples after passing through the bit flipping channel
+
+% Decode bits from received bit sequence
+rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_1');  % IMPLEMENT THIS: Decode the received bits
+
+% Compute the BER
+BER_case_1 = ComputeBER(bit_seq,rec_bit_seq); %[DONE] IMPLEMENT THIS: Calculate the bit error rate
+
+%% Part 1-a: Effect of bit flipping probability on BER
+% GOAL: Make a plot for the BER versus different values of the channel
+% parameter p
+
+p_vect          = 0:0.1:1;              % Use this vector to extract different values of p in your code
+BER_case_1_vec  = zeros(size(p_vect));  % Use this vector to store the resultant BER
+
+%%% WRITE YOUR CODE HERE
+for p_ind = 1:length(p_vect)
+    rec_sample_seq = BSC(bit_seq,1,p_vect(p_ind));
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_1');
+    BER_case_1_vec(p_ind) = ComputeBER(bit_seq,rec_bit_seq);
+end
+%%%
+
+%% Part 2: BER for simple bit-flipping channel with multiple samples
+
+% System parameters
+fs  = 5;    % Number of samples per symbol (bit)
+
+% Generate a bit sequence
+bit_seq = GenerateBits(N_bits); % Generate a sequence of bits equal to the total number of bits
+
+% Generate samples from bits
+sample_seq = GenerateSamples(bit_seq,fs); %[DONE] IMPLEMENT THIS: Generate a sequence of samples for each bit
+
+% Pass the sample sequence through the channel
+rec_sample_seq = BSC(sample_seq,fs,p);   % Generate the received samples after passing through the bit flipping channel
+
+% Decode bits from received bit sequence
+rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_2',fs);    %[DONE] IMPLEMENT THIS: Decode the received bits
+
+% Compute the BER
+BER_case_2 = ComputeBER(bit_seq,rec_bit_seq);   % Calculate the bit error rate
+
+%% Part 2-a: Effect of bit flipping probability on BER
+% GOAL: Make a plot for the BER versus different values of the channel
+% parameter p
+
+p_vect          = 0:0.1:1;              % Use this vector to extract different values of p in your code
+BER_case_2_vec  = zeros(size(p_vect));  % Use this vector to store the resultant BER
+
+%%% WRITE YOUR CODE HERE
+for p_ind = 1:length(p_vect)
+    rec_sample_seq = BSC(sample_seq,fs,p_vect(p_ind));
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_2',fs);
+    BER_case_2_vec(p_ind) = ComputeBER(bit_seq,rec_bit_seq);
+end
+%%%
+
+%% Part 3: BER for simple bit-flipping channel with multiple samples and correlated channel
+fs=5;
+% Generate a bit sequence
+bit_seq = GenerateBits(N_bits); % Generate a sequence of bits equal to the total number of bits
+
+% Generate samples from bits
+sample_seq = GenerateSamples(bit_seq,fs); % Generate a sequence of samples for each bit
+
+% Pass the sample sequence through the channel
+rec_sample_seq  = BSC(sample_seq,fs,p,'correlated'); % Generate the received samples after passing through the bit flipping channel
+
+% Decode bits from received bit sequence
+rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_3',fs);    % IMPLEMENT THIS: Decode the received bits
+
+% Compute the BER
+BER_case_3 = ComputeBER(bit_seq,rec_bit_seq);  % Calculate the bit error rate
+
+%% Part 3-a: Effect of bit flipping probability on BER
+% GOAL: Make a plot for the BER versus different values of the channel
+% parameter p
+
+p_vect          = 0:0.1:1;              % Use this vector to extract different values of p in your code
+BER_case_3_vec  = zeros(size(p_vect));  % Use this vector to store the resultant BER
+
+%%% WRITE YOUR CODE HERE
+for p_ind = 1:length(p_vect)
+    rec_sample_seq = BSC(sample_seq,fs,p_vect(p_ind),'correlated');
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_3',fs);
+    BER_case_3_vec(p_ind) = ComputeBER(bit_seq,rec_bit_seq);
+end
+%%%
+
+% Plotting results
+
+figure
+plot(p_vect,BER_case_1_vec,'x-k','linewidth',2); hold on;
+plot(p_vect,BER_case_2_vec,'o-r','linewidth',2); hold on;
+plot(p_vect,BER_case_3_vec,'d-b','linewidth',2); hold on;
+
+xlabel('Values of p','fontsize',10)
+ylabel('BER','fontsize',10)
+legend('Part 1-a','Part 2-a','Part 3-a','fontsize',10)
+%% Part 4: Effect of number of repetitions on BER
+% GOAL: Make a plot for the BER versus the number of repetitions used in
+% the transmitter of part 2
+% There is no template code for this part. Please write your own complete
+% code here. You can re-use any of the codes in the previous parts
+
+
+
+% Generate a bit sequence
+fs_vect          = 1:20;              % Use this vector to extract different values of p in your code
+p=0.2;
+BER_case_4_vec  = zeros(size(fs_vect));  % Use this vector to store the resultant BER
+
+bit_seq = GenerateBits(N_bits); % Generate a sequence of bits equal to the total number of bits
+
+
+for fs_ind = 1:length(fs_vect)
+    % Generate samples from bits
+    sample_seq = GenerateSamples(bit_seq,fs_vect(fs_ind)); %[DONE] IMPLEMENT THIS: Generate a sequence of samples for each bit
+
+    rec_sample_seq = BSC(sample_seq,fs_vect(fs_ind),p);
+    
+    rec_bit_seq = DecodeBitsFromSamples(rec_sample_seq,'part_2',fs_vect(fs_ind));
+    
+    BER_case_4_vec(fs_ind) = ComputeBER(bit_seq,rec_bit_seq);
+end
+
+figure
+plot(fs_vect,BER_case_4_vec,'linewidth',2); hold on;
+
+xlabel('Values of fs','fontsize',10)
+ylabel('BER','fontsize',10)
+
+
+%%% WRITE YOUR CODE HERE
+##### SOURCE END #####
+--></body></html>
